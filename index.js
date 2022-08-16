@@ -14,15 +14,6 @@ function addItem(newItem) {
             </div>
         </li>
     `);
-    console.log('addItem() ran');
-}
-
-function checkItem(checkedItem) {
-
-}
-
-function deleteItem() {
-
 }
 
 function shoppingList() {
@@ -38,16 +29,13 @@ function shoppingList() {
     $('.shopping-item-toggle').on('click', event => {
         const checkedItem = $(event.currentTarget).closest('li');
         checkedItem.find('.shopping-item').toggleClass('shopping-item__checked');
-        console.log('Check Item Listener Ran');
     });
 
     //Delete Item
     $('.shopping-item-delete').on('click', event => {
         $(event.currentTarget).closest('li').remove();
-        console.log('Delete Item Listener Ran');
     });
 
-    console.log('shoppingList() ran');
 }
 
 $(shoppingList);

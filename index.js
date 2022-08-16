@@ -17,7 +17,7 @@ function addItem(newItem) {
     console.log('addItem() ran');
 }
 
-function checkItem() {
+function checkItem(checkedItem) {
 
 }
 
@@ -30,11 +30,16 @@ function shoppingList() {
     $('#js-shopping-list-form').submit(event => {
         event.preventDefault();
         const newItem = $(event.currentTarget).find('#shopping-list-entry');
-        console.log('shoppingList() ran');
         addItem(newItem);
         newItem.val('');
     });
 
+    //Check Item
+    $('.shopping-item-toggle').on('click', event => {
+        const checkedItem = $(event.currentTarget).closest('li');
+        checkedItem.find('.shopping-item').toggleClass('shopping-item__checked');
+        console.log('Check Item Listner Ran');
+    });
 
     console.log('shoppingList() ran');
 }

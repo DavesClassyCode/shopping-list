@@ -18,22 +18,31 @@ function addItem(newItem) {
 
 function shoppingList() {
     //Add Item
-    $('#js-shopping-list-form').submit(event => {
+    $('#js-shopping-list-form').submit(function(event) {
         event.preventDefault();
-        const newItem = $(event.currentTarget).find('#shopping-list-entry');
-        addItem(newItem);
+
+        const newItem = $(this).find('#shopping-list-entry');
+        if(newItem.val() === ""){
+            alert("Error: Enter at least one character.");
+        } else {
+            addItem(newItem);
+        }
         newItem.val('');
     });
 
-    //Check Item
-    $('.shopping-item-toggle').on('click', event => {
-        const checkedItem = $(event.currentTarget).closest('li');
-        checkedItem.find('.shopping-item').toggleClass('shopping-item__checked');
-    });
+    //Check or Delete Item
+    $('ul').on('click', 'button', function(event) {
 
-    //Delete Item
-    $('.shopping-item-delete').on('click', event => {
-        $(event.currentTarget).closest('li').remove();
+        //Check
+        console.log($(this).hasClass('shopping-item-toggle'));
+        const checkedItem = $(this).closest('li');
+        checkedItem.find('.shopping-item').toggleClass('shopping-item__checked');
+
+        //Delete
+        console.log($(this).hasClass('shopping-item-delete'));
+        if($(this).hasClass('shopping-item-delete')){
+            $(this).closest('li').remove();
+        }
     });
 
 }
